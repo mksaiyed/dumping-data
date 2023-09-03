@@ -6,3 +6,11 @@
     box-sizing: border-box;
     width: fit-content;
 }
+
+.MuiInputBase-input {
+    background: unset;
+}
+
+.MuiTextField-root {
+    background: unset;
+}

@@ -21,7 +21,6 @@ const Navbar = () => {
                     <StyledListItem>{item}</StyledListItem>
                 ))}
             </StyledNavList>
-
             <StyledActionButton>
                 {CONSTANTS.ACTION_BUTTON_TEXT}
             </StyledActionButton>

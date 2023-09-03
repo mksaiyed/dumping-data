@@ -1,15 +1,25 @@
 import React from "react";
 import "./App.css";
-import Footer from "./components/Footer/Footer";
-import HeroSection from "./components/HeroSection/HeroSection";
-import Navbar from "./components/Navbar/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Dashboard from "./components/Dashboard/Dashboard";
+import { ExportDataProvider } from "./context/Export";
+import { initialState } from "./context/Export/initialState";
+import SearchExportPage from "./components/SearchExportPage/SearchExportPage";
 
 function App() {
     return (
         <>
-            <Navbar />
-            <HeroSection />
-            <Footer />
+            <BrowserRouter>
+                <ExportDataProvider value={initialState}>
+                    <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                        <Route
+                            path="/search-data"
+                            element={<SearchExportPage />}
+                        />
+                    </Routes>
+                </ExportDataProvider>
+            </BrowserRouter>
         </>
     );
 }

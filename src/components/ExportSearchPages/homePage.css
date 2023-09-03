@@ -1,0 +1,122 @@
+.home {
+    background-color: antiquewhite;
+}
+
+table {
+    /* margin: 4rem auto; */
+    margin-left: 20px;
+    margin-top: 30px;
+    border-radius: 1rem;
+    border: 1rem hidden #443c68;
+    border-collapse: collapse;
+    box-shadow: 0 0 0 1px black;
+    overflow: hidden;
+    max-width: 95rem;
+}
+
+td {
+    font-size: 0.5rem;
+    line-height: 1;
+}
+
+html {
+    font-size: 65%;
+}
+
+thead {
+    font-size: 1.3rem;
+    background-color: #3910ee;
+    color: #fff;
+}
+
+th {
+    width: 5vh;
+}
+
+th,
+td {
+    border: 1px solid #6a677c;
+    min-width: 4rem;
+    padding: 0.5rem;
+    line-height: 1.3;
+}
+
+td {
+    font-size: 1.4rem;
+    width: 3rem;
+}
+
+.pageNumbers li {
+    padding: 10px;
+    border: 1px solid rgb(14, 13, 13);
+    cursor: pointer;
+}
+
+.pageNumbers li.active {
+    background-color: #7059d6;
+    color: rgb(234, 227, 227);
+}
+
+button {
+    /* background-color: transparent; */
+    border: none;
+    color: #080708;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4630a7;
+    color: white;
+}
+
+button:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.filter-down {
+    background-color: #d3d1df;
+    margin: 20px;
+    height: 450px;
+    width: 99%;
+}
+
+.filter {
+    background-color: #a39ec1;
+    height: 45px;
+    height: auto;
+}
+
+.filter-list {
+    display: block;
+}
+
+.form-control {
+    width: 70%;
+    height: 32px;
+    font-size: 14px;
+    line-height: 1.42;
+    border: 1px solid rgb(58, 52, 52);
+}
+
+.dropdown {
+    box-sizing: border-box;
+    border: 1px solid rgb(158, 147, 147);
+    margin-top: 10px;
+    height: 250px;
+    overflow-y: scroll;
+    overflow-x: none;
+    background: white;
+}
+
+.filters {
+    background: #53627a;
+}
+
+placeholder {
+    padding-left: 20px;
+}

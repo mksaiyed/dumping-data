@@ -7,6 +7,7 @@ import { useExportData } from "../../hooks/useExportData";
 import { useExportDispatch } from "../../hooks/useExportDispatch";
 import { CONSTANTS } from "../../utils/constants";
 import Grid from "../Grid/Grid";
+import { StyledGridContainer } from "./SearchExportPage.styled";
 const EXPORT_DATA = [
     {
         _id: "64e4e8ce4ff4a571e02be80c",
@@ -143,12 +144,12 @@ const SearchExportPage = () => {
 
     const formateRowsData = (data, selectedTab) => {
         const rowsArr = [];
+        const grid_parameters =
+            selectedTab === CONSTANTS.TABS[0]
+                ? CONSTANTS.IMPORT_GRID_PARAMETERS
+                : CONSTANTS.EXPORT_GRID_PARAMETERS;
         data.forEach((item) => {
             const data = [];
-            const grid_parameters =
-                selectedTab === CONSTANTS.TABS[0]
-                    ? CONSTANTS.IMPORT_GRID_PARAMETERS
-                    : CONSTANTS.EXPORT_DROPDOWN_ITEMS;
             grid_parameters.forEach(({ key }) => {
                 data.push(item[key]);
             });
@@ -158,13 +159,13 @@ const SearchExportPage = () => {
         setRowsData(rowsArr);
     };
 
-    const getGridData = useCallback(() => {
-        const dropdown = dropdownValue.toUpperCase();
+    const getGridData = () => {
         if (searchValue !== "") {
+            const dropdown = dropdownValue.toUpperCase();
             setIsLoading(true);
             axios
                 .get(
-                    `http://35.154.61.242:4002/api/${selectedTab}/filter?${dropdown}=${searchValue}`
+                    `http://43.205.229.37:4002/api/${selectedTab}/filter?${dropdown}=${searchValue}`
                 )
                 .then((data) => {
                     if (data.data.status && data.data.responce.length > 0) {
@@ -178,7 +179,7 @@ const SearchExportPage = () => {
                     setIsLoading(false);
                 });
         }
-    }, [dropdownValue, searchValue, selectedTab, listItems]);
+    };
 
     const handleSearchClick = () => {
         getGridData();
@@ -186,32 +187,43 @@ const SearchExportPage = () => {
 
     useEffect(() => {
         getGridData();
-    }, [getGridData]);
+    }, []);
 
-    useEffect(() => {
-        if (isData) {
-            setListItems(
-                selectedTab === CONSTANTS.TABS[0]
-                    ? CONSTANTS.IMPORT_GRID_PARAMETERS
-                    : CONSTANTS.EXPORT_DROPDOWN_ITEMS
-            );
-        }
-    }, [isData, selectedTab]);
+    // useEffect(() => {
+    //     if (isData) {
+    //         setListItems(
+    //             selectedTab === CONSTANTS.TABS[0]
+    //                 ? CONSTANTS.IMPORT_GRID_PARAMETERS
+    //                 : CONSTANTS.EXPORT_GRID_PARAMETERS
+    //         );
+    //     }
+    // }, [isData, selectedTab]);
 
     return (
         <>
             <Navbar />
             <ExportSearchComponent handleSearch={handleSearchClick} />
-            {!isLoading ? (
-                <Grid
-                    rows={rowsData}
-                    headerData={headerData}
-                    isData={isData}
-                    noDataFoundMessage={CONSTANTS.NO_DATA_FOUND}
-                />
-            ) : (
-                <div>Loading ....</div>
-            )}
+            <StyledGridContainer>
+                {searchValue === "" ? (
+                    <div>{CONSTANTS.NO_DATA_FOUND}</div>
+                ) : isLoading ? (
+                    <div>Loading ....</div>
+                ) : selectedTab === CONSTANTS.TABS[0] ? (
+                    <Grid
+                        rows={rowsData}
+                        headerData={CONSTANTS.IMPORT_GRID_PARAMETERS}
+                        isData={isData}
+                        noDataFoundMessage={CONSTANTS.NO_DATA_FOUND}
+                    />
+                ) : (
+                    <Grid
+                        rows={rowsData}
+                        headerData={CONSTANTS.EXPORT_GRID_PARAMETERS}
+                        isData={isData}
+                        noDataFoundMessage={CONSTANTS.NO_DATA_FOUND}
+                    />
+                )}
+            </StyledGridContainer>
             <Footer />
         </>
     );

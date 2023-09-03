@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { TablePagination } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -44,42 +45,69 @@ export default function Grid(props) {
     const rows = props.rows || [];
     const headerData = props.headerData || [];
     return (
-        <TableContainer component={Paper}>
+        <>
             {props.isData ? (
-                <Table sx={{ maxWidth: "80%" }} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            {headerData.map((item) => (
-                                <StyledTableCell key={Math.random() + item.key}>
-                                    {item.label}
-                                </StyledTableCell>
-                            ))}
-                            {/* <StyledTableCell align="right">
-                            Calories
-                        </StyledTableCell> */}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <StyledTableRow key={Math.random() + "row"}>
-                                {row.map((item) => (
-                                    <StyledTableCell
-                                        key={Math.random() + item}
-                                        align="right"
-                                    >
-                                        {item}
-                                    </StyledTableCell>
-                                ))}
-                                {/* <StyledTableCell component="th" scope="row">
+                <Paper
+                    sx={{
+                        width: "1000px",
+                        // height: "800px",
+                        overflow: "hidden",
+                    }}
+                >
+                    <TableContainer sx={{ maxHeight: 600, height: 800 }}>
+                        {props.isData ? (
+                            <Table stickyHeader aria-label="sticky table">
+                                <TableHead>
+                                    <TableRow>
+                                        {headerData.map((item) => (
+                                            <StyledTableCell
+                                                key={Math.random() + item.key}
+                                            >
+                                                {item.label}
+                                            </StyledTableCell>
+                                        ))}
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {rows.map((row) => (
+                                        <StyledTableRow
+                                            hover
+                                            key={Math.random() + "row"}
+                                        >
+                                            {row.map((item) => (
+                                                <StyledTableCell
+                                                    key={Math.random() + item}
+                                                    align="right"
+                                                >
+                                                    {item}
+                                                </StyledTableCell>
+                                            ))}
+                                            {/* <StyledTableCell component="th" scope="row">
                                 {row.name}
                             </StyledTableCell> */}
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                                        </StyledTableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        ) : (
+                            <div>{props.noDataFoundMessage}</div>
+                        )}
+                    </TableContainer>
+                    <div style={{ float: "right" }}>
+                        <TablePagination
+                            rowsPerPageOptions={[10, 25, 100]}
+                            component="div"
+                            count={rows.length}
+                            // rowsPerPage={rowsPerPage}
+                            // page={page}
+                            // onPageChange={handleChangePage}
+                            // onRowsPerPageChange={handleChangeRowsPerPage}
+                        />
+                    </div>
+                </Paper>
             ) : (
                 <div>{props.noDataFoundMessage}</div>
             )}
-        </TableContainer>
+        </>
     );
 }

@@ -32,6 +32,7 @@ const ExportSearchComponent = (props) => {
     const [searchValueState, setSearchValueState] = useState(searchValue);
     const [selectedTabState, setSelectedTabState] = useState(selectedTab);
     const [dropdownValueState, setDropdownValueState] = useState(dropdownValue);
+    const [showSearchError, setshowSearchError] = useState(false);
     const selectRef = useRef(null);
 
     useEffect(() => {
@@ -62,7 +63,8 @@ const ExportSearchComponent = (props) => {
     // const debounceFn = useCallback(_debounce(handleDebounceFn, 1000), []);
 
     const handleSearchChange = (e) => {
-        setSearchValueState(e.target.value);
+        const value = e.target.value;
+        setSearchValueState(value.trim());
         // debounceFn(e.target.value);
     };
 
@@ -89,7 +91,14 @@ const ExportSearchComponent = (props) => {
     };
 
     const handleSearchClick = () => {
+        console.log({
+            searchValueState: searchValueState,
+            dropdownValueState: dropdownValueState,
+            selectedTabState: selectedTabState,
+        });
         if (searchValueState !== "") {
+            setSearchValueState("");
+            setshowSearchError(false);
             dispatchExportData({
                 type: ACTIONS.SET_SEARCH_VALUE,
                 payload: {
@@ -109,6 +118,8 @@ const ExportSearchComponent = (props) => {
                 },
             });
             props.handleSearch();
+        } else {
+            setshowSearchError(true);
         }
     };
 
@@ -168,6 +179,11 @@ const ExportSearchComponent = (props) => {
                         required
                         onChange={(e) => handleSearchChange(e)}
                     />
+                    {/* {showSearchError && (
+                        <span style={{ color: "red" }}>
+                            Please enter a value.
+                        </span>
+                    )} */}
                 </StyledSearchInput>
                 <StyledSearchIcon>
                     <SearchIcon onClick={handleSearchClick} />

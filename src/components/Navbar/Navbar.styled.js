@@ -34,6 +34,7 @@ export const StyledListItem = styled.div`
 
 export const StyledLogoWrapper = styled.div`
     text-align: center;
+    cursor: pointer;
     /* background-image: url(${LogoImage}); */
 `;
 
@@ -47,5 +48,6 @@ export const StyledActionButton = styled.div`
     background-color: #f2f2f2;
     border: 1px solid #ccc;
     border-radius: 5px;
+    cursor: pointer;
     color: blue;
 `;

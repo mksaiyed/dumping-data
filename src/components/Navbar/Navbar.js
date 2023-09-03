@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { CONSTANTS } from "../../utils/constants";
 import LogoImage from "./../../images/logo.jpg";
 import {
@@ -11,10 +12,15 @@ import {
 } from "./Navbar.styled";
 
 const Navbar = () => {
+    const navigate = useNavigate();
     return (
         <StyledContainer>
             <StyledLogoWrapper>
-                <StyledLogo src={LogoImage} alr="Logo" />
+                <StyledLogo
+                    src={LogoImage}
+                    alr="Logo"
+                    onClick={() => navigate("/")}
+                />
             </StyledLogoWrapper>
             <StyledNavList>
                 {CONSTANTS.NAVBAR_ITEMS.map((item) => (

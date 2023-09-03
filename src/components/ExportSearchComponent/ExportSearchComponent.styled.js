@@ -30,9 +30,9 @@ export const StyledTitle = styled.h2`
     font-size: 50px;
     color: #000000;
     margin-bottom: 5px;
-    animation: ${ding} 4s forwards;
-    opacity: 0;
-    transition-timing-function: cubic-bezier(0.785, 0.14, 0.2, 0.98);
+    /* animation: ${ding} 4s forwards; */
+    /* opacity: 0; */
+    /* transition-timing-function: cubic-bezier(0.785, 0.14, 0.2, 0.98); */
 `;
 
 export const StyledTabWrapper = styled.div`

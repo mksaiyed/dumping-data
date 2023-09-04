@@ -97,7 +97,7 @@ const ExportSearchComponent = (props) => {
             selectedTabState: selectedTabState,
         });
         if (searchValueState !== "") {
-            setSearchValueState("");
+            // setSearchValueState("");
             setshowSearchError(false);
             dispatchExportData({
                 type: ACTIONS.SET_SEARCH_VALUE,

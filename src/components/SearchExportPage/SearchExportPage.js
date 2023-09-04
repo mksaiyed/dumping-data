@@ -141,6 +141,9 @@ const SearchExportPage = () => {
     const [listItems, setListItems] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isData, setIsData] = useState(false);
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(20);
+    const [totalCount, setTotalCount] = useState(0);
 
     const formateRowsData = (data, selectedTab) => {
         const rowsArr = [];
@@ -165,12 +168,13 @@ const SearchExportPage = () => {
             setIsLoading(true);
             axios
                 .get(
-                    `http://35.154.11.128:9000/api/${selectedTab}/filter?${dropdown}=${searchValue}&limit=20&page=1`
+                    `http://3.108.56.179:9000/api/${selectedTab}/filter?${dropdown}=${searchValue}&limit=${limit}&page=${page}`
                 )
                 .then((data) => {
-                    if (data.data.status && data.data.responce.length > 0) {
-                        formateRowsData(data.data.responce, selectedTab);
+                    if (data.data.data.length > 0) {
+                        formateRowsData(data.data.data, selectedTab);
                         setIsData(true);
+                        setTotalCount(data.data.count);
                         setHeaderData(listItems);
                     }
                 })
@@ -188,6 +192,19 @@ const SearchExportPage = () => {
     useEffect(() => {
         getGridData();
     }, []);
+
+    useEffect(() => {
+        getGridData();
+    }, [page, limit]);
+
+    const handlePageChange = (event, page) => {
+        console.log("handlePageChange", event, page);
+        setPage(page);
+    };
+    const handleLimitChange = (event) => {
+        console.log("handleLimitChange", event, event.target.value);
+        setLimit(event.target.value);
+    };
 
     // useEffect(() => {
     //     if (isData) {
@@ -213,6 +230,11 @@ const SearchExportPage = () => {
                         rows={rowsData}
                         headerData={CONSTANTS.IMPORT_GRID_PARAMETERS}
                         isData={isData}
+                        page={page}
+                        totalCount={totalCount}
+                        limit={limit}
+                        handlePageChange={handlePageChange}
+                        handleLimitChange={handleLimitChange}
                         noDataFoundMessage={CONSTANTS.NO_DATA_FOUND}
                     />
                 ) : (
@@ -220,6 +242,11 @@ const SearchExportPage = () => {
                         rows={rowsData}
                         headerData={CONSTANTS.EXPORT_GRID_PARAMETERS}
                         isData={isData}
+                        page={page}
+                        totalCount={totalCount}
+                        limit={limit}
+                        handlePageChange={handlePageChange}
+                        handleLimitChange={handleLimitChange}
                         noDataFoundMessage={CONSTANTS.NO_DATA_FOUND}
                     />
                 )}

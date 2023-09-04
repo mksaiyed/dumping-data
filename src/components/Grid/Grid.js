@@ -49,12 +49,12 @@ export default function Grid(props) {
             {props.isData ? (
                 <Paper
                     sx={{
-                        width: "1000px",
-                        // height: "800px",
+                        width: "90%",
+                        // marginLeft: "40px", // Need to check
                         overflow: "hidden",
                     }}
                 >
-                    <TableContainer sx={{ maxHeight: 600, height: 800 }}>
+                    <TableContainer sx={{ maxHeight: 1300, height: 1300 }}>
                         {props.isData ? (
                             <Table stickyHeader aria-label="sticky table">
                                 <TableHead>
@@ -95,13 +95,13 @@ export default function Grid(props) {
                     </TableContainer>
                     <div style={{ float: "right" }}>
                         <TablePagination
-                            rowsPerPageOptions={[10, 25, 100]}
+                            rowsPerPageOptions={[10, 20, 30, 40]}
                             component="div"
-                            count={rows.length}
-                            // rowsPerPage={rowsPerPage}
-                            // page={page}
-                            // onPageChange={handleChangePage}
-                            // onRowsPerPageChange={handleChangeRowsPerPage}
+                            count={props.totalCount}
+                            rowsPerPage={props.limit}
+                            page={props.page}
+                            onPageChange={props.handlePageChange}
+                            onRowsPerPageChange={props.handleLimitChange}
                         />
                     </div>
                 </Paper>

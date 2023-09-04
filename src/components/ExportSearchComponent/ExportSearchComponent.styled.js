@@ -17,6 +17,9 @@ export const StyledContainer = styled.div`
     padding: 100px;
     text-align: center;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const StyledTitleContainer = styled.div`

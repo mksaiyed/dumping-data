@@ -9,17 +9,26 @@ import SearchExportPage from "./components/SearchExportPage/SearchExportPage";
 function App() {
     return (
         <>
-            <BrowserRouter>
-                <ExportDataProvider value={initialState}>
-                    <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route
-                            path="/search-data"
-                            element={<SearchExportPage />}
-                        />
-                    </Routes>
-                </ExportDataProvider>
-            </BrowserRouter>
+            <div
+                style={{
+                    width: "100vw",
+                    minHeight: "100vh",
+                    display: "flex",
+                    flexDirection: "column",
+                }}
+            >
+                <BrowserRouter>
+                    <ExportDataProvider value={initialState}>
+                        <Routes>
+                            <Route path="/" element={<Dashboard />} />
+                            <Route
+                                path="/search-data"
+                                element={<SearchExportPage />}
+                            />
+                        </Routes>
+                    </ExportDataProvider>
+                </BrowserRouter>
+            </div>
         </>
     );
 }

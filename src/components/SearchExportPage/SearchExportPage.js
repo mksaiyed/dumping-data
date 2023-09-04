@@ -165,7 +165,7 @@ const SearchExportPage = () => {
             setIsLoading(true);
             axios
                 .get(
-                    `http://43.205.229.37:4002/api/${selectedTab}/filter?${dropdown}=${searchValue}`
+                    `http://35.154.11.128:9000/api/${selectedTab}/filter?${dropdown}=${searchValue}&limit=20&page=1`
                 )
                 .then((data) => {
                     if (data.data.status && data.data.responce.length > 0) {

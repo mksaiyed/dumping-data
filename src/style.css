@@ -86,7 +86,7 @@ ol li {
 .list2 {
     display: flex;
     align-items: center;
-    margin: 30px auto;
+    margin: 15px auto;
     /* margin-bottom: 30px; */
     margin-top: 0;
     width: 40%;
@@ -112,7 +112,7 @@ ol li {
     text-align: right;
     /* color: rgba(255, 255, 255, 0.929); #1abbad */
     margin-right: 15px;
-    margin-top: 10%;
+    margin-top: 30px;
 }
 
 .list2 li.clicked {
@@ -1153,8 +1153,8 @@ span {
   } */
 .cont {
     width: 100%;
-    height: 100%;
-    padding: 1cm;
+    /* height: 100%; */
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1185,8 +1185,8 @@ span {
 .company-name {
     color: #ffffff;
     text-align: center;
-    margin-bottom: 35px;
-    margin-top: 35px;
+    margin-bottom: 15px;
+    margin-top: 15px;
     width: 100%;
 }
 
@@ -1229,8 +1229,8 @@ span {
 }
 
 .social-media {
-    margin-top: 25px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1266,7 +1266,7 @@ span {
 .copy {
     text-align: -webkit-center;
     color: white;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     width: 100%;
 }
 @media screen and (max-width: 768px) {

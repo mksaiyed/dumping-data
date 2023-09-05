@@ -8,6 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { TablePagination } from "@mui/material";
+import NoDataFound from "../NoDataFound/NoDataFound";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -49,49 +50,42 @@ export default function Grid(props) {
             {props.isData ? (
                 <Paper
                     sx={{
-                        width: "90%",
+                        width: "99%",
                         // marginLeft: "40px", // Need to check
                         overflow: "hidden",
                     }}
                 >
                     <TableContainer sx={{ maxHeight: 1300, height: 1300 }}>
-                        {props.isData ? (
-                            <Table stickyHeader aria-label="sticky table">
-                                <TableHead>
-                                    <TableRow>
-                                        {headerData.map((item) => (
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                    {headerData.map((item) => (
+                                        <StyledTableCell
+                                            key={Math.random() + item.key}
+                                        >
+                                            {item.label}
+                                        </StyledTableCell>
+                                    ))}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row) => (
+                                    <StyledTableRow
+                                        hover
+                                        key={Math.random() + "row"}
+                                    >
+                                        {row.map((item) => (
                                             <StyledTableCell
-                                                key={Math.random() + item.key}
+                                                key={Math.random() + item}
+                                                align="right"
                                             >
-                                                {item.label}
+                                                {item}
                                             </StyledTableCell>
                                         ))}
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rows.map((row) => (
-                                        <StyledTableRow
-                                            hover
-                                            key={Math.random() + "row"}
-                                        >
-                                            {row.map((item) => (
-                                                <StyledTableCell
-                                                    key={Math.random() + item}
-                                                    align="right"
-                                                >
-                                                    {item}
-                                                </StyledTableCell>
-                                            ))}
-                                            {/* <StyledTableCell component="th" scope="row">
-                                {row.name}
-                            </StyledTableCell> */}
-                                        </StyledTableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        ) : (
-                            <div>{props.noDataFoundMessage}</div>
-                        )}
+                                    </StyledTableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
                     </TableContainer>
                     <div style={{ float: "right" }}>
                         <TablePagination
@@ -106,7 +100,15 @@ export default function Grid(props) {
                     </div>
                 </Paper>
             ) : (
-                <div>{props.noDataFoundMessage}</div>
+                <div
+                    style={{
+                        display: "flex",
+                        height: "600px",
+                        alignItems: "center",
+                    }}
+                >
+                    <NoDataFound message={props.noDataFoundMessage} />
+                </div>
             )}
         </>
     );

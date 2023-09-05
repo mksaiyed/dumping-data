@@ -7,7 +7,13 @@ import { useExportData } from "../../hooks/useExportData";
 import { useExportDispatch } from "../../hooks/useExportDispatch";
 import { CONSTANTS } from "../../utils/constants";
 import Grid from "../Grid/Grid";
-import { StyledGridContainer } from "./SearchExportPage.styled";
+import {
+    StyledGridContainer,
+    StyledLoaderContainer,
+} from "./SearchExportPage.styled";
+import ContactUs from "../ContactUs/ContactUs";
+import Loader from "../Loader/Loader";
+import NoDataFound from "../NoDataFound/NoDataFound";
 const EXPORT_DATA = [
     {
         _id: "64e4e8ce4ff4a571e02be80c",
@@ -222,9 +228,13 @@ const SearchExportPage = () => {
             <ExportSearchComponent handleSearch={handleSearchClick} />
             <StyledGridContainer>
                 {searchValue === "" ? (
-                    <div>{CONSTANTS.NO_DATA_FOUND}</div>
-                ) : isLoading ? (
-                    <div>Loading ....</div>
+                    <StyledLoaderContainer>
+                        <NoDataFound />
+                    </StyledLoaderContainer>
+                ) : !isLoading ? (
+                    <StyledLoaderContainer>
+                        <Loader />
+                    </StyledLoaderContainer>
                 ) : selectedTab === CONSTANTS.TABS[0] ? (
                     <Grid
                         rows={rowsData}
@@ -235,7 +245,6 @@ const SearchExportPage = () => {
                         limit={limit}
                         handlePageChange={handlePageChange}
                         handleLimitChange={handleLimitChange}
-                        noDataFoundMessage={CONSTANTS.NO_DATA_FOUND}
                     />
                 ) : (
                     <Grid
@@ -247,7 +256,6 @@ const SearchExportPage = () => {
                         limit={limit}
                         handlePageChange={handlePageChange}
                         handleLimitChange={handleLimitChange}
-                        noDataFoundMessage={CONSTANTS.NO_DATA_FOUND}
                     />
                 )}
             </StyledGridContainer>

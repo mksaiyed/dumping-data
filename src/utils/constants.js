@@ -156,6 +156,14 @@ export const CONSTANTS = {
             value: "company_name",
         },
     ],
+    SEARCH_ERRORS: {
+        hsn_code:
+            "Please enter a valid hsn code, It should be more than 4 digits.",
+        hsn_code_description:
+            "Please enter a valid hsn description, It should be more than 4 characters.",
+        company_name:
+            "Please enter a valid company name, It should be more than 4 characters.",
+    },
     CARDS_DATA_UP: [
         {
             title: "Enhance Your Business",

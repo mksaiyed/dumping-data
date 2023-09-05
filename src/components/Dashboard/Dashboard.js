@@ -4,6 +4,7 @@ import HeaderImage from "../HeaderImage/HeaderImage";
 import CardsSection from "../CardsSection/CardsSection";
 import HomePageWelcomeSection from "../HomePageWelcomeSection/HomePageWelcomeSection";
 import Footer from "../Footer/Footer";
+import ContactUs from "../ContactUs/ContactUs";
 
 function Dashboard() {
     return (
@@ -12,6 +13,7 @@ function Dashboard() {
             <HeaderImage />
             <CardsSection />
             <HomePageWelcomeSection />
+            <ContactUs />
             <Footer />
         </>
     );

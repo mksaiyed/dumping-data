@@ -23,6 +23,8 @@ const validateForm = (values) => {
         errors.number = "Number is required";
     } else if (!/^\d+$/.test(values.number)) {
         errors.number = "Invalid number";
+    } else if (values.number.length < 10) {
+        errors.number = "minimum 10 digits required";
     }
 
     if (!values.message) {

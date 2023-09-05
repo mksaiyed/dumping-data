@@ -516,12 +516,12 @@ ol li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background: linear-gradient(
+    background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0.5) 0%,
             rgba(0, 0, 0, 0.5) 100%
         ),
-        url("img/intro.png"); */
+        url("./images/intro_bg.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -841,7 +841,7 @@ body {
 .countries-box {
     display: flex;
     flex-direction: row;
-    /* background-image: url("img/Visual\ Chart\ Page\ Iteration\ 6.png"); */
+    background-image: url("./images/world_map.png");
     flex-wrap: wrap;
     padding: 0px;
     align-content: center;
@@ -1235,6 +1235,7 @@ span {
     justify-content: center;
     align-items: center;
     width: 100%;
+    display: block !important;
 }
 .social-media a {
     display: inline-block;

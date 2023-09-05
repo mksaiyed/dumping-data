@@ -4,6 +4,15 @@
     width: 100%;
 }
 
+.bg-container {
+    background-image: url("./../../images/sample_bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
 .contact-us-container {
     width: 600px;
     margin: 0 auto;

@@ -44,92 +44,98 @@ const ContactUs = () => {
     };
 
     return (
-        <div className="contact-us-container">
-            <Formik
-                initialValues={{
-                    firstName: "",
-                    lastName: "",
-                    email: "",
-                    number: "",
-                    message: "",
-                }}
-                onSubmit={handleSubmit}
-                validate={validateForm}
-            >
-                <Form className="formik-form">
-                    <div className="form-group">
-                        <div className="input-container">
-                            <label htmlFor="firstName">First Name:</label>
-                            <Field
-                                type="text"
-                                id="firstName"
-                                name="firstName"
-                            />
-                            <ErrorMessage
-                                name="firstName"
-                                component="div"
-                                className="error"
-                            />
+        <div className="bg-container">
+            <div className="contact-us-container">
+                <Formik
+                    initialValues={{
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        number: "",
+                        message: "",
+                    }}
+                    onSubmit={handleSubmit}
+                    validate={validateForm}
+                >
+                    <Form className="formik-form">
+                        <div className="form-group">
+                            <div className="input-container">
+                                <label htmlFor="firstName">First Name:</label>
+                                <Field
+                                    type="text"
+                                    id="firstName"
+                                    name="firstName"
+                                />
+                                <ErrorMessage
+                                    name="firstName"
+                                    component="div"
+                                    className="error"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="form-group">
-                        <div className="input-container">
-                            <label htmlFor="lastName">Last Name:</label>
-                            <Field type="text" id="lastName" name="lastName" />
-                            <ErrorMessage
-                                name="lastName"
-                                component="div"
-                                className="error"
-                            />
+                        <div className="form-group">
+                            <div className="input-container">
+                                <label htmlFor="lastName">Last Name:</label>
+                                <Field
+                                    type="text"
+                                    id="lastName"
+                                    name="lastName"
+                                />
+                                <ErrorMessage
+                                    name="lastName"
+                                    component="div"
+                                    className="error"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="form-group">
-                        <div className="input-container">
-                            <label htmlFor="email">Email:</label>
-                            <Field type="email" id="email" name="email" />
-                            <ErrorMessage
-                                name="email"
-                                component="div"
-                                className="error"
-                            />
+                        <div className="form-group">
+                            <div className="input-container">
+                                <label htmlFor="email">Email:</label>
+                                <Field type="email" id="email" name="email" />
+                                <ErrorMessage
+                                    name="email"
+                                    component="div"
+                                    className="error"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="form-group">
-                        <div className="input-container">
-                            <label htmlFor="number">Number:</label>
-                            <Field type="text" id="number" name="number" />
-                            <ErrorMessage
-                                name="number"
-                                component="div"
-                                className="error"
-                            />
+                        <div className="form-group">
+                            <div className="input-container">
+                                <label htmlFor="number">Number:</label>
+                                <Field type="text" id="number" name="number" />
+                                <ErrorMessage
+                                    name="number"
+                                    component="div"
+                                    className="error"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="form-group">
-                        <div className="input-container">
-                            <label htmlFor="message">Message:</label>
-                            <Field
-                                as="textarea"
-                                id="message"
-                                name="message"
-                                rows="6"
-                            />
-                            <ErrorMessage
-                                name="message"
-                                component="div"
-                                className="error"
-                            />
+                        <div className="form-group">
+                            <div className="input-container">
+                                <label htmlFor="message">Message:</label>
+                                <Field
+                                    as="textarea"
+                                    id="message"
+                                    name="message"
+                                    rows="6"
+                                />
+                                <ErrorMessage
+                                    name="message"
+                                    component="div"
+                                    className="error"
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group">
-                        <button type="submit">Submit</button>
-                    </div>
-                </Form>
-            </Formik>
+                        <div className="form-group">
+                            <button type="submit">Submit</button>
+                        </div>
+                    </Form>
+                </Formik>
+            </div>
         </div>
     );
 };

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import _debounce from "lodash/debounce";
-import { useNavigate } from "react-router-dom";
 import {
     StyledContainer,
     StyledDropdown,
@@ -14,7 +13,7 @@ import {
     StyledTitleContainer,
 } from "./ExportSearchComponent.styled";
 import { CONSTANTS } from "../../utils/constants";
-import { MenuItem, Select, TextField, styled } from "@mui/material";
+import { MenuItem, Select, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useExportData } from "../../hooks/useExportData";
 import { useExportDispatch } from "../../hooks/useExportDispatch";
@@ -26,13 +25,12 @@ const CustomSelectStyle = styled(Select)(({ theme }) => ({
 }));
 
 const ExportSearchComponent = (props) => {
-    // const navigate = useNavigate();
     const { selectedTab, dropdownValue, searchValue } = useExportData();
     const dispatchExportData = useExportDispatch();
     const [searchValueState, setSearchValueState] = useState(searchValue);
     const [selectedTabState, setSelectedTabState] = useState(selectedTab);
     const [dropdownValueState, setDropdownValueState] = useState(dropdownValue);
-    const [showSearchError, setshowSearchError] = useState(false);
+    const [showSearchError, setShowSearchError] = useState(false);
     const selectRef = useRef(null);
 
     useEffect(() => {
@@ -41,8 +39,7 @@ const ExportSearchComponent = (props) => {
                 selectRef.current &&
                 !selectRef.current.contains(event.target)
             ) {
-                // Click occurred outside the Select, close it
-                selectRef.current.blur(); // This will blur the Select and close the dropdown
+                selectRef.current.blur();
             }
         }
 
@@ -70,35 +67,25 @@ const ExportSearchComponent = (props) => {
 
     const handleTabChange = (data) => {
         setSelectedTabState(data);
-        // dispatchExportData({
-        //     type: ACTIONS.SET_SELECTED_TAB,
-        //     payload: {
-        //         selectedTab: data,
-        //     },
-        // });
     };
 
     const handleDropdownChange = (e) => {
         e.stopPropagation();
         e.preventDefault();
         setDropdownValueState(e.target.value);
-        // dispatchExportData({
-        //     type: ACTIONS.SET_DROPDOWN_VALUE,
-        //     payload: {
-        //         dropdownValue: e.target.value,
-        //     },
-        // });
     };
 
-    const handleSearchClick = () => {
-        console.log({
-            searchValueState: searchValueState,
-            dropdownValueState: dropdownValueState,
-            selectedTabState: selectedTabState,
-        });
-        if (searchValueState !== "") {
-            // setSearchValueState("");
-            setshowSearchError(false);
+    const handleSearchClick = (e) => {
+        e.preventDefault();
+        console.log(
+            searchValueState,
+            searchValueState.length,
+            searchValueState && searchValue.length > 5
+        );
+        if (!searchValueState && searchValue.length < 5) {
+            setShowSearchError(true);
+        } else {
+            setShowSearchError(false);
             dispatchExportData({
                 type: ACTIONS.SET_SEARCH_VALUE,
                 payload: {
@@ -118,8 +105,6 @@ const ExportSearchComponent = (props) => {
                 },
             });
             props.handleSearch();
-        } else {
-            setshowSearchError(true);
         }
     };
 
@@ -140,7 +125,7 @@ const ExportSearchComponent = (props) => {
                     </StyledTab>
                 ))}
             </StyledTabWrapper>
-            <StyledSearchWrapper>
+            <StyledSearchWrapper onClick={handleSearchClick}>
                 <StyledDropdown>
                     <Select
                         ref={selectRef}
@@ -151,7 +136,7 @@ const ExportSearchComponent = (props) => {
                         input={<CustomSelectStyle />}
                         sx={{ width: 150, border: "none" }}
                     >
-                        {CONSTANTS.EXPORT_DROPDOWN_ITEMS.map((item) => (
+                        {CONSTANTS.SEARCH_DROPDOWN_ITEMS.map((item) => (
                             <MenuItem key={item.value} value={item.value}>
                                 {item.label}
                             </MenuItem>
@@ -159,19 +144,6 @@ const ExportSearchComponent = (props) => {
                     </Select>
                 </StyledDropdown>
                 <StyledSearchInput>
-                    {/* <TextField
-                        id="standard-basic"
-                        variant="standard"
-                        hiddenLabel
-                        InputProps={{
-                            disableUnderline: true,
-                        }}
-                        sx={{ width: "100%" }}
-                        className={classes.autofillFix}
-                        placeholder="Search here..."
-                        value={searchText}
-                        onChange={(e) => setSearchText(e.target.value)}
-                    /> */}
                     <StyledInput
                         type="text"
                         placeholder="Search here..."
@@ -179,16 +151,22 @@ const ExportSearchComponent = (props) => {
                         required
                         onChange={(e) => handleSearchChange(e)}
                     />
-                    {/* {showSearchError && (
-                        <span style={{ color: "red" }}>
-                            Please enter a value.
-                        </span>
-                    )} */}
                 </StyledSearchInput>
-                <StyledSearchIcon>
+                <StyledSearchIcon type="submit">
                     <SearchIcon onClick={handleSearchClick} />
                 </StyledSearchIcon>
             </StyledSearchWrapper>
+            {showSearchError && (
+                <span
+                    style={{
+                        color: "red",
+                        fontSize: "14px",
+                        marginTop: "10px",
+                    }}
+                >
+                    Please enter a valid value.
+                </span>
+            )}
         </StyledContainer>
     );
 };

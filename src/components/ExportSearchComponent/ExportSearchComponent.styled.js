@@ -66,7 +66,7 @@ export const StyledTab = styled.div`
     background: ${({ isActive }) => (isActive ? "#f94413" : "#9c9e9f")};
 `;
 
-export const StyledSearchWrapper = styled.div`
+export const StyledSearchWrapper = styled.form`
     display: flex;
     border: 2px solid #9c9e9f;
     border-radius: 10px;
@@ -97,7 +97,7 @@ export const StyledInput = styled.input`
     outline: none;
 `;
 
-export const StyledSearchIcon = styled.div`
+export const StyledSearchIcon = styled.button`
     height: 30px;
     display: flex;
     width: 30px;

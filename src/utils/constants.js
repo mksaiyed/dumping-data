@@ -21,6 +21,13 @@ export const CONSTANTS = {
     ACTION_BUTTON_TEXT: "HSN Code List",
     HERO_SECTION_TITTLE: "One stop solution for all your Export Import Reports",
     SEARCH_TITTLE: "Search Import Export Data Of India",
+    CONTACT_FORM_FIELDS: [
+        "firstName",
+        "lastName",
+        "email",
+        "number",
+        "message",
+    ],
     IMPORT_GRID_PARAMETERS: [
         {
             label: "Date",
@@ -135,7 +142,7 @@ export const CONSTANTS = {
     ],
     NO_DATA_FOUND: "No Data Found!",
     TABS: ["import", "export"],
-    EXPORT_DROPDOWN_ITEMS: [
+    SEARCH_DROPDOWN_ITEMS: [
         {
             label: "HSN Code",
             value: "hsn_code",

@@ -31,7 +31,7 @@ const Footer = () => {
                     <ul class="list2" id="list2">
                         {CONSTANTS.NAVBAR_ITEMS.map((item) => (
                             <li>
-                                <a href="#">{item}</a>
+                                <a href={item.path}>{item.label}</a>
                             </li>
                         ))}
                     </ul>

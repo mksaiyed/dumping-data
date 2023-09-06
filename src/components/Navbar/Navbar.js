@@ -24,7 +24,9 @@ const Navbar = () => {
             </StyledLogoWrapper>
             <StyledNavList>
                 {CONSTANTS.NAVBAR_ITEMS.map((item) => (
-                    <StyledListItem>{item}</StyledListItem>
+                    <StyledListItem onClick={() => navigate(item.path)}>
+                        {item.label}
+                    </StyledListItem>
                 ))}
             </StyledNavList>
             <StyledActionButton>

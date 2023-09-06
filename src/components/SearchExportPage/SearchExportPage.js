@@ -212,19 +212,8 @@ const SearchExportPage = () => {
         setLimit(event.target.value);
     };
 
-    // useEffect(() => {
-    //     if (isData) {
-    //         setListItems(
-    //             selectedTab === CONSTANTS.TABS[0]
-    //                 ? CONSTANTS.IMPORT_GRID_PARAMETERS
-    //                 : CONSTANTS.EXPORT_GRID_PARAMETERS
-    //         );
-    //     }
-    // }, [isData, selectedTab]);
-
     return (
         <>
-            <Navbar />
             <ExportSearchComponent handleSearch={handleSearchClick} />
             <StyledGridContainer>
                 {searchValue === "" ? (
@@ -259,7 +248,6 @@ const SearchExportPage = () => {
                     />
                 )}
             </StyledGridContainer>
-            <Footer />
         </>
     );
 };

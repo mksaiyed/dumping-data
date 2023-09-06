@@ -17,7 +17,28 @@ import contact3 from "../images/contact/icons8-message-32.png";
 import contact4 from "../images/contact/icons8-phone-100.png";
 
 export const CONSTANTS = {
-    NAVBAR_ITEMS: ["Home", "About", "Blogs", "Services", "Contact"],
+    NAVBAR_ITEMS: [
+        {
+            path: "/",
+            label: "Home",
+        },
+        {
+            path: "/about",
+            label: "About",
+        },
+        // {
+        //     path: "/blogs',
+        //     label: "Blogs",
+        // },
+        {
+            path: "/services",
+            label: "Services",
+        },
+        {
+            path: "/contact",
+            label: "Contact",
+        },
+    ],
     ACTION_BUTTON_TEXT: "HSN Code List",
     HERO_SECTION_TITTLE: "One stop solution for all your Export Import Reports",
     SEARCH_TITTLE: "Search Import Export Data Of India",

@@ -1202,7 +1202,7 @@ span {
 
 .company-text {
     text-align: -webkit-center;
-    width: 100%;
+    margin: auto;
 }
 .company-text p {
     color: #ffffff;
@@ -1229,8 +1229,8 @@ span {
 }
 
 .social-media {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1250,13 +1250,13 @@ span {
 }
 
 .facebook {
-    /* background-image: url("img/icons8-linkedin-1600.png"); */
+    background-image: url("./images//logos/linkdin.png");
 }
 .instagram {
-    /* background-image: url("img/icons8-instagram-1600.png"); */
+    background-image: url("./images//logos/instagram.png");
 }
 .youtube {
-    /* background-image: url("img/icons8-youtube-1600.png"); */
+    background-image: url("./images//logos/youtube.png");
 }
 .facebook:hover,
 .instagram:hover,
@@ -1267,7 +1267,7 @@ span {
     text-align: -webkit-center;
     color: white;
     margin-bottom: 5px;
-    width: 100%;
+    margin: auto;
 }
 @media screen and (max-width: 768px) {
     .cont {

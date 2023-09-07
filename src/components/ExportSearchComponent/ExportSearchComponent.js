@@ -76,13 +76,12 @@ const ExportSearchComponent = (props) => {
     };
 
     const handleSearchClick = (e) => {
-        e.preventDefault();
         console.log(
-            searchValueState,
-            searchValueState.length,
-            searchValueState && searchValue.length > 5
+            "🚀 ~ file: ExportSearchComponent.js:79 ~ handleSearchClick ~ e:",
+            e
         );
-        if (!searchValueState && searchValue.length < 5) {
+        e.preventDefault();
+        if (searchValueState.length < 5) {
             setShowSearchError(true);
         } else {
             setShowSearchError(false);
@@ -104,7 +103,9 @@ const ExportSearchComponent = (props) => {
                     dropdownValue: dropdownValueState,
                 },
             });
-            props.handleSearch();
+            setTimeout(() => {
+                props.handleSearch();
+            }, [500]);
         }
     };
 
@@ -125,7 +126,7 @@ const ExportSearchComponent = (props) => {
                     </StyledTab>
                 ))}
             </StyledTabWrapper>
-            <StyledSearchWrapper onClick={handleSearchClick}>
+            <StyledSearchWrapper onSubmit={handleSearchClick}>
                 <StyledDropdown>
                     <Select
                         ref={selectRef}
@@ -152,8 +153,8 @@ const ExportSearchComponent = (props) => {
                         onChange={(e) => handleSearchChange(e)}
                     />
                 </StyledSearchInput>
-                <StyledSearchIcon type="submit">
-                    <SearchIcon onClick={handleSearchClick} />
+                <StyledSearchIcon type="submit" onClick={handleSearchClick}>
+                    <SearchIcon />
                 </StyledSearchIcon>
             </StyledSearchWrapper>
             {showSearchError && (
@@ -164,7 +165,7 @@ const ExportSearchComponent = (props) => {
                         marginTop: "10px",
                     }}
                 >
-                    Please enter a valid value.
+                    {CONSTANTS.SEARCH_ERRORS[dropdownValueState]}
                 </span>
             )}
         </StyledContainer>

@@ -516,12 +516,12 @@ ol li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background: linear-gradient(
+    background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0.5) 0%,
             rgba(0, 0, 0, 0.5) 100%
         ),
-        url("img/intro.png"); */
+        url("./images/intro_bg.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -841,7 +841,7 @@ body {
 .countries-box {
     display: flex;
     flex-direction: row;
-    /* background-image: url("img/Visual\ Chart\ Page\ Iteration\ 6.png"); */
+    background-image: url("./images/world_map.png");
     flex-wrap: wrap;
     padding: 0px;
     align-content: center;
@@ -1202,7 +1202,7 @@ span {
 
 .company-text {
     text-align: -webkit-center;
-    width: 100%;
+    margin: auto;
 }
 .company-text p {
     color: #ffffff;
@@ -1229,12 +1229,13 @@ span {
 }
 
 .social-media {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    display: block !important;
 }
 .social-media a {
     display: inline-block;
@@ -1250,13 +1251,13 @@ span {
 }
 
 .facebook {
-    /* background-image: url("img/icons8-linkedin-1600.png"); */
+    background-image: url("./images//logos/linkdin.png");
 }
 .instagram {
-    /* background-image: url("img/icons8-instagram-1600.png"); */
+    background-image: url("./images//logos/instagram.png");
 }
 .youtube {
-    /* background-image: url("img/icons8-youtube-1600.png"); */
+    background-image: url("./images//logos/youtube.png");
 }
 .facebook:hover,
 .instagram:hover,
@@ -1267,7 +1268,7 @@ span {
     text-align: -webkit-center;
     color: white;
     margin-bottom: 5px;
-    width: 100%;
+    margin: auto;
 }
 @media screen and (max-width: 768px) {
     .cont {

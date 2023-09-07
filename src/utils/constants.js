@@ -17,7 +17,28 @@ import contact3 from "../images/contact/icons8-message-32.png";
 import contact4 from "../images/contact/icons8-phone-100.png";
 
 export const CONSTANTS = {
-    NAVBAR_ITEMS: ["Home", "About", "Blogs", "Services", "Contact"],
+    NAVBAR_ITEMS: [
+        {
+            path: "/",
+            label: "Home",
+        },
+        {
+            path: "/about",
+            label: "About",
+        },
+        // {
+        //     path: "/blogs',
+        //     label: "Blogs",
+        // },
+        {
+            path: "/services",
+            label: "Services",
+        },
+        {
+            path: "/contact",
+            label: "Contact",
+        },
+    ],
     ACTION_BUTTON_TEXT: "HSN Code List",
     HERO_SECTION_TITTLE: "One stop solution for all your Export Import Reports",
     SEARCH_TITTLE: "Search Import Export Data Of India",
@@ -156,6 +177,14 @@ export const CONSTANTS = {
             value: "company_name",
         },
     ],
+    SEARCH_ERRORS: {
+        hsn_code:
+            "Please enter a valid hsn code, It should be more than 4 digits.",
+        hsn_code_description:
+            "Please enter a valid hsn description, It should be more than 4 characters.",
+        company_name:
+            "Please enter a valid company name, It should be more than 4 characters.",
+    },
     CARDS_DATA_UP: [
         {
             title: "Enhance Your Business",

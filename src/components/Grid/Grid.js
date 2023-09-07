@@ -105,6 +105,7 @@ export default function Grid(props) {
                         display: "flex",
                         height: "600px",
                         alignItems: "center",
+                        margin: "auto",
                     }}
                 >
                     <NoDataFound message={props.noDataFoundMessage} />

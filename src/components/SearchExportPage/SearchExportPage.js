@@ -1,19 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
+import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import axios from "axios";
+import NoDataFound from "../NoDataFound/NoDataFound";
+import Grid from "../Grid/Grid";
+import Loader from "../Loader/Loader";
 import ExportSearchComponent from "../ExportSearchComponent/ExportSearchComponent";
 import { useExportData } from "../../hooks/useExportData";
-import { useExportDispatch } from "../../hooks/useExportDispatch";
 import { CONSTANTS } from "../../utils/constants";
-import Grid from "../Grid/Grid";
 import {
     StyledGridContainer,
     StyledLoaderContainer,
 } from "./SearchExportPage.styled";
-import ContactUs from "../ContactUs/ContactUs";
-import Loader from "../Loader/Loader";
-import NoDataFound from "../NoDataFound/NoDataFound";
+
 const EXPORT_DATA = [
     {
         _id: "64e4e8ce4ff4a571e02be80c",
@@ -141,10 +140,7 @@ const IMPORT_DATA = [
 
 const SearchExportPage = () => {
     const { selectedTab, dropdownValue, searchValue } = useExportData();
-    const dispatchExportData = useExportDispatch();
     const [rowsData, setRowsData] = useState([]);
-    const [headerData, setHeaderData] = useState([]);
-    const [listItems, setListItems] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isData, setIsData] = useState(false);
     const [page, setPage] = useState(1);
@@ -164,32 +160,39 @@ const SearchExportPage = () => {
             });
             rowsArr.push(data);
         });
-        console.log(rowsArr);
         setRowsData(rowsArr);
     };
 
-    const getGridData = () => {
+    const getGridData = useCallback(() => {
         if (searchValue !== "") {
             const dropdown = dropdownValue.toUpperCase();
             setIsLoading(true);
-            axios
-                .get(
-                    `http://3.108.56.179:9000/api/${selectedTab}/filter?${dropdown}=${searchValue}&limit=${limit}&page=${page}`
-                )
-                .then((data) => {
-                    if (data.data.data.length > 0) {
-                        formateRowsData(data.data.data, selectedTab);
-                        setIsData(true);
-                        setTotalCount(data.data.count);
-                        setHeaderData(listItems);
-                    }
-                })
-                .catch((err) => console.log(err))
-                .finally(() => {
-                    setIsLoading(false);
-                });
+            setTimeout(() => {
+                setIsData(true);
+                formateRowsData(
+                    dropdownValue === "import" ? IMPORT_DATA : EXPORT_DATA,
+                    selectedTab
+                );
+                setTotalCount(3);
+                setIsLoading(false);
+            }, 2000);
+            // axios
+            //     .get(
+            //         `http://3.108.56.179:9000/api/${selectedTab}/filter?${dropdown}=${searchValue}&limit=${limit}&page=${page}`
+            //     )
+            //     .then((data) => {
+            //         if (data.data.data.length > 0) {
+            //             setIsData(true);
+            //             formateRowsData(data.data.data, selectedTab);
+            //             setTotalCount(data.data.count);
+            //         }
+            //     })
+            //     .catch((err) => console.log(err))
+            //     .finally(() => {
+            //         setIsLoading(false);
+            //     });
         }
-    };
+    }, [dropdownValue, limit, page, searchValue, selectedTab]);
 
     const handleSearchClick = () => {
         getGridData();
@@ -197,41 +200,24 @@ const SearchExportPage = () => {
 
     useEffect(() => {
         getGridData();
-    }, []);
-
-    useEffect(() => {
-        getGridData();
-    }, [page, limit]);
+    }, [page, limit, getGridData]);
 
     const handlePageChange = (event, page) => {
-        console.log("handlePageChange", event, page);
         setPage(page);
     };
     const handleLimitChange = (event) => {
-        console.log("handleLimitChange", event, event.target.value);
         setLimit(event.target.value);
     };
 
-    // useEffect(() => {
-    //     if (isData) {
-    //         setListItems(
-    //             selectedTab === CONSTANTS.TABS[0]
-    //                 ? CONSTANTS.IMPORT_GRID_PARAMETERS
-    //                 : CONSTANTS.EXPORT_GRID_PARAMETERS
-    //         );
-    //     }
-    // }, [isData, selectedTab]);
-
     return (
         <>
-            <Navbar />
             <ExportSearchComponent handleSearch={handleSearchClick} />
             <StyledGridContainer>
                 {searchValue === "" ? (
                     <StyledLoaderContainer>
                         <NoDataFound />
                     </StyledLoaderContainer>
-                ) : !isLoading ? (
+                ) : isLoading ? (
                     <StyledLoaderContainer>
                         <Loader />
                     </StyledLoaderContainer>
@@ -259,7 +245,6 @@ const SearchExportPage = () => {
                     />
                 )}
             </StyledGridContainer>
-            <Footer />
         </>
     );
 };

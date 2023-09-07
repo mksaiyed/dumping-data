@@ -208,7 +208,6 @@ const SearchExportPage = () => {
 
     return (
         <>
-            <Navbar />
             <ExportSearchComponent handleSearch={handleSearchClick} />
             <StyledGridContainer>
                 {searchValue === "" ? (
@@ -243,7 +242,6 @@ const SearchExportPage = () => {
                     />
                 )}
             </StyledGridContainer>
-            <Footer />
         </>
     );
 };

@@ -76,6 +76,10 @@ const ExportSearchComponent = (props) => {
     };
 
     const handleSearchClick = (e) => {
+        console.log(
+            "🚀 ~ file: ExportSearchComponent.js:79 ~ handleSearchClick ~ e:",
+            e
+        );
         e.preventDefault();
         if (searchValueState.length < 5) {
             setShowSearchError(true);
@@ -99,7 +103,9 @@ const ExportSearchComponent = (props) => {
                     dropdownValue: dropdownValueState,
                 },
             });
-            props.handleSearch();
+            setTimeout(() => {
+                props.handleSearch();
+            }, [500]);
         }
     };
 
@@ -147,8 +153,8 @@ const ExportSearchComponent = (props) => {
                         onChange={(e) => handleSearchChange(e)}
                     />
                 </StyledSearchInput>
-                <StyledSearchIcon type="submit">
-                    <SearchIcon onClick={handleSearchClick} />
+                <StyledSearchIcon type="submit" onClick={handleSearchClick}>
+                    <SearchIcon />
                 </StyledSearchIcon>
             </StyledSearchWrapper>
             {showSearchError && (

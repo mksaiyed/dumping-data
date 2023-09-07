@@ -9,4 +9,5 @@ export const StyledLoaderContainer = styled.div`
     height: 600px;
     display: flex;
     align-items: center;
+    margin: auto;
 `;

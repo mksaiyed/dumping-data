@@ -167,27 +167,27 @@ const SearchExportPage = () => {
         if (searchValue !== "") {
             const dropdown = dropdownValue.toUpperCase();
             setIsLoading(true);
-            setIsData(true);
-            formateRowsData(
-                dropdownValue === "import" ? IMPORT_DATA : EXPORT_DATA,
-                selectedTab
-            );
-            setTotalCount(3);
-            // axios
-            //     .get(
-            //         `http://3.108.56.179:9000/api/${selectedTab}/filter?${dropdown}=${searchValue}&limit=${limit}&page=${page}`
-            //     )
-            //     .then((data) => {
-            //         if (data.data.data.length > 0) {
-            //             setIsData(true);
-            //             formateRowsData(data.data.data, selectedTab);
-            //             setTotalCount(data.data.count);
-            //         }
-            //     })
-            //     .catch((err) => console.log(err))
-            //     .finally(() => {
-            //         setIsLoading(false);
-            //     });
+            // setIsData(true);
+            // formateRowsData(
+            //     dropdownValue === "import" ? IMPORT_DATA : EXPORT_DATA,
+            //     selectedTab
+            // );
+            // setTotalCount(3);
+            axios
+                .get(
+                    `http://3.108.56.179:9000/api/${selectedTab}/filter?${dropdown}=${searchValue}&limit=${limit}&page=${page}`
+                )
+                .then((data) => {
+                    if (data.data.data.length > 0) {
+                        setIsData(true);
+                        formateRowsData(data.data.data, selectedTab);
+                        setTotalCount(data.data.count);
+                    }
+                })
+                .catch((err) => console.log(err))
+                .finally(() => {
+                    setIsLoading(false);
+                });
         }
     }, [dropdownValue, limit, page, searchValue, selectedTab]);
 
@@ -214,7 +214,7 @@ const SearchExportPage = () => {
                     <StyledLoaderContainer>
                         <NoDataFound />
                     </StyledLoaderContainer>
-                ) : !isLoading ? (
+                ) : isLoading ? (
                     <StyledLoaderContainer>
                         <Loader />
                     </StyledLoaderContainer>

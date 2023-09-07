@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledGridContainer = styled.div`
     margin: 20px auto;
+    width: 98%;
 `;
 
 export const StyledLoaderContainer = styled.div`

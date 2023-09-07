@@ -11,7 +11,7 @@ export const StyledContainer = styled.div`
     background-image: linear-gradient(rgba(3, 12, 19, 255), #030c13);
     opacity: 0.86;
     position: fixed;
-    /* z-index: 1; */
+    z-index: 99;
 `;
 
 export const StyledNavList = styled.div`

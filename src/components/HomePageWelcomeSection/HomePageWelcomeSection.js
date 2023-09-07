@@ -1,5 +1,6 @@
 import React from "react";
 import { CONSTANTS } from "../../utils/constants";
+import CountryComp from "./CountryComp";
 
 const HomePageWelcomeSection = () => {
     return (
@@ -43,6 +44,8 @@ const HomePageWelcomeSection = () => {
                     </>
                 ))}
             </div>
+
+            <CountryComp />
         </>
     );
 };

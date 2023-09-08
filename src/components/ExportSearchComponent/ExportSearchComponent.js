@@ -61,7 +61,7 @@ const ExportSearchComponent = (props) => {
 
     const handleSearchChange = (e) => {
         const value = e.target.value;
-        setSearchValueState(value.trim());
+        setSearchValueState(value);
         // debounceFn(e.target.value);
     };
 
@@ -88,7 +88,7 @@ const ExportSearchComponent = (props) => {
             dispatchExportData({
                 type: ACTIONS.SET_SEARCH_VALUE,
                 payload: {
-                    searchValue: searchValueState,
+                    searchValue: searchValueState.trim(),
                 },
             });
             dispatchExportData({

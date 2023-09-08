@@ -53,6 +53,7 @@ export const StyledTab = styled.div`
     text-transform: capitalize;
     display: flex;
     text-align: center;
+    color: white;
     justify-content: center;
     align-items: center;
     border-top-left-radius: ${({ item }) =>
@@ -63,14 +64,15 @@ export const StyledTab = styled.div`
         item === CONSTANTS.TABS[1] && "10px"};
     border-bottom-right-radius: ${({ item }) =>
         item === CONSTANTS.TABS[1] && "10px"};
-    background: ${({ isActive }) => (isActive ? "#f94413" : "#9c9e9f")};
+    background: ${({ isActive }) => (isActive ? "#0b0b68" : "#646464")};
 `;
 
 export const StyledSearchWrapper = styled.form`
     display: flex;
-    border: 2px solid #9c9e9f;
+    border: 2px solid #646464;
+    background: #fff;
     border-radius: 10px;
-    height: 40px;
+    height: 50px;
     align-items: center;
     width: 66%;
     margin: auto;
@@ -78,11 +80,13 @@ export const StyledSearchWrapper = styled.form`
 `;
 
 export const StyledDropdown = styled.div`
+    border-right: 2px solid #646464;
     width: 25%;
 `;
 
 export const StyledSearchInput = styled.div`
     width: 70%;
+    padding-left: 10px;
     input:-webkit-autofill {
         -webkit-text-fill-color: unset;
         -webkit-background-color: unset;
@@ -98,12 +102,19 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledSearchIcon = styled.button`
-    height: 30px;
+    height: 50px;
     display: flex;
-    width: 30px;
-    background: grey;
+    width: 50px;
+    background: #646464;
     border-radius: 8px;
     cursor: pointer;
     justify-content: center;
-    align-items: center;
+    &:hover {
+        background: #0b0b68;
+    }
+
+    svg {
+        width: 25px;
+        height: 25px;
+    }
 `;

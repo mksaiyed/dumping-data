@@ -13,7 +13,7 @@ import {
     StyledTitleContainer,
 } from "./ExportSearchComponent.styled";
 import { CONSTANTS } from "../../utils/constants";
-import { MenuItem, Select, styled } from "@mui/material";
+import { FormControl, MenuItem, Select, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useExportData } from "../../hooks/useExportData";
 import { useExportDispatch } from "../../hooks/useExportDispatch";
@@ -23,6 +23,14 @@ const CustomSelectStyle = styled(Select)(({ theme }) => ({
         border: "none !important",
     },
 }));
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: 40 * 4.5 + 8,
+            width: 150,
+        },
+    },
+};
 
 const ExportSearchComponent = (props) => {
     const { selectedTab, dropdownValue, searchValue } = useExportData();
@@ -31,23 +39,23 @@ const ExportSearchComponent = (props) => {
     const [selectedTabState, setSelectedTabState] = useState(selectedTab);
     const [dropdownValueState, setDropdownValueState] = useState(dropdownValue);
     const [showSearchError, setShowSearchError] = useState(false);
-    const selectRef = useRef(null);
+    // const selectRef = useRef(null);
 
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (
-                selectRef.current &&
-                !selectRef.current.contains(event.target)
-            ) {
-                selectRef.current.blur();
-            }
-        }
+    // useEffect(() => {
+    //     function handleClickOutside(event) {
+    //         if (
+    //             selectRef.current &&
+    //             !selectRef.current.contains(event.target)
+    //         ) {
+    //             selectRef.current.blur();
+    //         }
+    //     }
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
+    //     document.addEventListener("mousedown", handleClickOutside);
+    //     return () => {
+    //         document.removeEventListener("mousedown", handleClickOutside);
+    //     };
+    // }, []);
 
     // const handleDebounceFn = (value) => {
     //     dispatchExportData({
@@ -70,16 +78,11 @@ const ExportSearchComponent = (props) => {
     };
 
     const handleDropdownChange = (e) => {
-        e.stopPropagation();
         e.preventDefault();
         setDropdownValueState(e.target.value);
     };
 
     const handleSearchClick = (e) => {
-        console.log(
-            "🚀 ~ file: ExportSearchComponent.js:79 ~ handleSearchClick ~ e:",
-            e
-        );
         e.preventDefault();
         if (searchValueState.length < 5) {
             setShowSearchError(true);
@@ -124,37 +127,51 @@ const ExportSearchComponent = (props) => {
                     </StyledTab>
                 ))}
             </StyledTabWrapper>
-            <StyledSearchWrapper>
-                <StyledDropdown>
-                    <Select
-                        ref={selectRef}
-                        labelId="demo-simple-select-autowidth-label"
-                        id="demo-simple-select-autowidth"
-                        value={dropdownValueState}
-                        onChange={handleDropdownChange}
-                        input={<CustomSelectStyle />}
-                        sx={{ width: 150, border: "none" }}
-                    >
-                        {CONSTANTS.SEARCH_DROPDOWN_ITEMS.map((item) => (
-                            <MenuItem key={item.value} value={item.value}>
-                                {item.label}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </StyledDropdown>
-                <StyledSearchInput>
-                    <StyledInput
-                        type="text"
-                        placeholder="Search here..."
-                        value={searchValueState}
-                        required
-                        onChange={(e) => handleSearchChange(e)}
-                    />
-                </StyledSearchInput>
-                <StyledSearchIcon type="submit" onClick={handleSearchClick}>
-                    <SearchIcon />
-                </StyledSearchIcon>
-            </StyledSearchWrapper>
+            <FormControl fullWidth>
+                <StyledSearchWrapper>
+                    <StyledDropdown>
+                        <Select
+                            // ref={selectRef}
+                            labelId="demo-simple-select-autowidth-label"
+                            id="demo-simple-select-autowidth"
+                            value={dropdownValueState}
+                            onChange={handleDropdownChange}
+                            input={<CustomSelectStyle />}
+                            style={{ fontSize: "12px", fontWeight: "bold" }}
+                            sx={{ width: 150, height: 50, border: "none" }}
+                        >
+                            {CONSTANTS.SEARCH_DROPDOWN_ITEMS.map((item) => (
+                                <MenuItem
+                                    sx={{ width: "100%", fontSize: "12px" }}
+                                    key={item.value}
+                                    value={item.value}
+                                >
+                                    {item.label}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </StyledDropdown>
+                    <StyledSearchInput>
+                        <StyledInput
+                            type={
+                                dropdownValueState === "hsn_code"
+                                    ? "number"
+                                    : "text"
+                            }
+                            placeholder={
+                                CONSTANTS.PLACEHOLDERS[dropdownValueState]
+                            }
+                            value={searchValueState}
+                            required
+                            onChange={(e) => handleSearchChange(e)}
+                        />
+                    </StyledSearchInput>
+                    <StyledSearchIcon type="submit" onClick={handleSearchClick}>
+                        <SearchIcon />
+                    </StyledSearchIcon>
+                </StyledSearchWrapper>
+            </FormControl>
+
             {showSearchError && (
                 <span
                     style={{

@@ -103,9 +103,7 @@ const ExportSearchComponent = (props) => {
                     dropdownValue: dropdownValueState,
                 },
             });
-            setTimeout(() => {
-                props.handleSearch();
-            }, [500]);
+            props.handleSearch();
         }
     };
 
@@ -126,7 +124,7 @@ const ExportSearchComponent = (props) => {
                     </StyledTab>
                 ))}
             </StyledTabWrapper>
-            <StyledSearchWrapper onSubmit={handleSearchClick}>
+            <StyledSearchWrapper>
                 <StyledDropdown>
                     <Select
                         ref={selectRef}

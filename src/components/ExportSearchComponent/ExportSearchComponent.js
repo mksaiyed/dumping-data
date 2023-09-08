@@ -103,7 +103,7 @@ const ExportSearchComponent = (props) => {
                     dropdownValue: dropdownValueState,
                 },
             });
-            props.handleSearch(searchValueState);
+            props.handleSearch(searchValueState.trim());
         }
     };
 

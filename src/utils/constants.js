@@ -185,6 +185,11 @@ export const CONSTANTS = {
         company_name:
             "Please enter a valid company name, It should be more than 4 characters.",
     },
+    PLACEHOLDERS: {
+        hsn_code: "Type hsn code here...",
+        hsn_code_description: "Type hsn description here...",
+        company_name: "Type company name here...",
+    },
     CARDS_DATA_UP: [
         {
             title: "Enhance Your Business",

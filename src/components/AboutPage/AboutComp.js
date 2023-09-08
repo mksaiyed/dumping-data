@@ -6,7 +6,7 @@ const AboutComp = () => {
         <>
             <div class="container">
                 <div class="logoo">
-                    <h1>About Us</h1>
+                    <h1 style={{ marginTop: "150px" }}>About Us</h1>
                 </div>
 
                 <section>

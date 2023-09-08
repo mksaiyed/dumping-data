@@ -163,44 +163,48 @@ const SearchExportPage = () => {
         setRowsData(rowsArr);
     };
 
-    const getGridData = useCallback(() => {
-        if (searchValue !== "") {
-            const dropdown = dropdownValue.toUpperCase();
-            setIsLoading(true);
-            // setTimeout(() => {
-            //     setIsData(true);
-            //     formateRowsData(
-            //         dropdownValue === "import" ? IMPORT_DATA : EXPORT_DATA,
-            //         selectedTab
-            //     );
-            //     setTotalCount(3);
-            //     setIsLoading(false);
-            // }, 2000);
-            axios
-                .get(
-                    `http://13.233.144.213:9001/api/${selectedTab}/filter?${dropdown}=${searchValue}&limit=${limit}&page=${page}`
-                )
-                .then((data) => {
-                    if (data.data.data.length > 0) {
-                        setIsData(true);
-                        formateRowsData(data.data.data, selectedTab);
-                        setTotalCount(data.data.count);
-                    }
-                })
-                .catch((err) => console.log(err))
-                .finally(() => {
-                    setIsLoading(false);
-                });
-        }
-    }, [dropdownValue, limit, page, searchValue, selectedTab]);
+    const getGridData = useCallback(
+        (query) => {
+            const searchQuery = query ? query : searchValue;
+            if (searchQuery !== "") {
+                const dropdown = dropdownValue.toUpperCase();
+                setIsLoading(true);
+                // setTimeout(() => {
+                //     setIsData(true);
+                //     formateRowsData(
+                //         dropdownValue === "import" ? IMPORT_DATA : EXPORT_DATA,
+                //         selectedTab
+                //     );
+                //     setTotalCount(3);
+                //     setIsLoading(false);
+                // }, 2000);
+                axios
+                    .get(
+                        `http://13.233.144.213:9001/api/${selectedTab}/filter?${dropdown}=${searchQuery}&limit=${limit}&page=${page}`
+                    )
+                    .then((data) => {
+                        if (data.data.data.length > 0) {
+                            setIsData(true);
+                            formateRowsData(data.data.data, selectedTab);
+                            setTotalCount(data.data.count);
+                        }
+                    })
+                    .catch((err) => console.log(err))
+                    .finally(() => {
+                        setIsLoading(false);
+                    });
+            }
+        },
+        [dropdownValue, limit, page, searchValue, selectedTab]
+    );
 
-    const handleSearchClick = () => {
-        getGridData();
+    const handleSearchClick = (query) => {
+        getGridData(query);
     };
 
     useEffect(() => {
         getGridData();
-    }, [page, limit, getGridData]);
+    }, [page, limit]);
 
     const handlePageChange = (event, page) => {
         setPage(page);
